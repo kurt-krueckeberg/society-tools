@@ -2,7 +2,10 @@
 declare(strict_types=1);
 use namespace SocietyTools\{EmailDataBuilder};
 
-$csvname = "csv-member-list.csv";
+if ($argc != 2)
+   die("Enter the CSV that has the list of members.\n";
+
+$csvname = $argv[1]; // "csv-member-list.csv";
 
 $file = new SplFileObject($csvname, "r");
 
@@ -18,4 +21,5 @@ print_r($ebuilder->get_sorted_emails());
 echo "----------------------------\n";
 
 print_r($ebuilder->get_member_list());
+
 $ebuilder->get_member_list();
