@@ -4,6 +4,7 @@ namespace SocietyTools;
 
 class EmailKeyedMemberDataBuilder {
 
+    private bool $is_sorted;
 /*
 Regex meaning. See https://regex101.com:
 --------------------------
@@ -27,11 +28,15 @@ $ asserts position at the end of a line
    //private static$zipcode_regex = '/(\d{5})(?:-|(?:-\d{4}))?\s*$/';
    private static$regex = '/([^,]+),\s*([A-Z]{2,})\s+(\d{5})(?:-|(?:-\d{4}))?\s*$/';
 
-      // Maps member's email to an array whose keys are: 'zip', 'city' and 'state'
-      private $members = array();
+   // Maps member's email to an array whose keys are: 'zip', 'city' and 'state'
+   private $members = array();
+  
+   // Sorted array of member emails that are the keys of $this->members.
+   private $member_emails = array();
 
    public function __construct()
    {
+      $this->si_sorted = false;
    }
 
    private function extract_zip(string $locality) : array
@@ -58,16 +63,22 @@ $ asserts position at the end of a line
 
        $a = array('zip' => $results['zip'], 'city' => $results['city'], 'state' => $results['state']);
 
+       // $arr[3] is the member's email. 
        $this->members[$arr[3]] = $a; 
    }
 
    public function get_sorted_emails() : array
    {
-      $emails = array_keys($this->members);
+      if (count($this->member_emails) == 0) {
 
-      sort($emails);
+         $emails = array_keys($this->members);
 
-      return $emails;
+         sort($emails);
+
+         $this->member_emails = $emails;
+      }  
+
+      return $this->member_emails;
    }  
 
    public function get_member_array() : array
