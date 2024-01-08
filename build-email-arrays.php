@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-use SocietyTools\{EmailDataBuilder};
+use SocietyTools\{EmailKeyedMemberDataBuilder};
 
 include "vendor/autoload.php";
 
@@ -13,7 +13,7 @@ $file = new SplFileObject($csvname, "r");
 
 $file->setFlags(\SplFileObject::READ_CSV| \SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
 
-$ebuilder = new EmailDataBuilder();
+$ebuilder = new EmailKeyedMemberDataBuilder();
 
 $cnt = 0;
 
