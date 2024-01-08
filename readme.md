@@ -1,6 +1,6 @@
 # Society Tools
 
-Either:
+## Setup
 
   * clone the repository using git
   * download the zipped version and unzip
@@ -10,6 +10,8 @@ Build the class autoloader from the command line:
 `composer dump-autoload`
 
 Include `vendor/autoload.php` as in these PHP files:
+
+## Example Code Description
 
 * create-csv.php - creates a .CSV of member data that has four comma separated fields:
   * name
