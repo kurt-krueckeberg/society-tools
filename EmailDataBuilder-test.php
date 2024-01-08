@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-use namespace SocietyTools\{EmailDataBuilder};
+use SocietyTools\{EmailDataBuilder};
 
 if ($argc != 2)
    die("Enter the CSV that has the list of members.\n";
