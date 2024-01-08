@@ -7,7 +7,7 @@ include "vendor/autoload.php";
 if ($argc != 2)
    die("Enter the member list that is the expected format.\n");
 
-$builder = new CreateMemberCSVFile($argv[2]);
+$builder = new CreateMemberCSVFile($argv[1]);
 
 //$input = "list-of-members.txt";
 
