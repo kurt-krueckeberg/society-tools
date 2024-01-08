@@ -4,7 +4,7 @@ use SocietyTools\{EmailKeyedMemberDataBuilder,BinarySearch,CreateMemberCSVFile};
 
 include "vendor/autoload.php";
 include "src/binary_search.php";
-include "src/config.php";
+include "config.php";
 
 function is_allen_county(int $zip) : bool
 {
