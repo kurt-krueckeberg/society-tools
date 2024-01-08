@@ -32,7 +32,7 @@ foreach ($csvfile as $no => $arr) $ebuilder($arr);
 
 $member_array = $ebuilder->get_member_array();
 
-$sored_member_emails = $ebuiler->get_sorted_emails();
+$sored_member_emails = $ebuilder->get_sorted_emails();
 
 $member_zipcodes = array();
 
@@ -40,13 +40,13 @@ $members = $non_members = 0;
 
 $comparator = function(string $left, string $right) { return strcmp($left, $right); };
 
-$csvfile = new SplFileObject($zoom_csv, "r");
+$zoomcsv = new SplFileObject("./zoom-csv/sept.csv", "r");
 
-$csvfile->setFlags(\SplFileObject::READ_CSV| \SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
+$zoomcsv->setFlags(\SplFileObject::READ_CSV| \SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
 
 $allen_county_cnt = 0;
 
-foreach ($file as $zoom_arr) { // Read zoom file.
+foreach ($zoomcsv as $zoom_arr) { // Read zoom file.
 
    $email = $zoom_arr[$email_index];
 
