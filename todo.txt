@@ -1,0 +1,1 @@
+Use the sep.csv file in zoom-csv/ as input into create-zoom.php.
