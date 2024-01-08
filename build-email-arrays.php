@@ -17,16 +17,18 @@ $ebuilder = new EmailDataBuilder();
 
 $cnt = 0;
 
-foreach ($file as $no => $arr) {
+foreach ($file as $no => $arr) 
 
-     echo "Line no: $no.\n";
      $ebuilder($arr);  
-}
+
+Echo "Printing the sorted emails:\n";
 
 print_r($ebuilder->get_sorted_emails());
 
 echo "----------------------------\n";
 
+echo "Printing the member list array whose key is the member's email.\n";
+
 print_r($ebuilder->get_member_list());
 
-$ebuilder->get_member_list();
+//$ebuilder->get_member_list();
