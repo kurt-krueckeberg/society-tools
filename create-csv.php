@@ -7,11 +7,11 @@ include "vendor/autoload.php";
 if ($argc != 2)
    die("Enter the member list that is the expected format.\n");
 
-$builder = new MemberListBuilder($csvname);
+$builder = new MemberListBuilder("member-list.csv");
 
-$input = "list-of-members.txt";
+//$input = "list-of-members.txt";
 
-$in = new SplFileObject($input, "r");
+$in = new SplFileObject($argv[1], "r");
 
 $in->setFlags(\SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
 
