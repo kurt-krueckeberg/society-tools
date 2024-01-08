@@ -15,8 +15,6 @@ $file->setFlags(\SplFileObject::READ_CSV| \SplFileObject::READ_AHEAD | \SplFileO
 
 $ebuilder = new EmailKeyedMemberDataBuilder();
 
-$cnt = 0;
-
 foreach ($file as $no => $arr) 
 
      $ebuilder($arr);  

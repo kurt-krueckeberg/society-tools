@@ -5,41 +5,6 @@ use SocietyTools\{EmailKeyedMemberDataBuilder,BinarySearch};
 include "vendor/autoload.php";
 include "src/binary_search.php";
 
-if ($argc != 2)
-   die("Enter the .csv file built using MemberListBuilder.\n");
-
-$csvname = $argv[1]; // "csv-member-list.csv";
-
-$file = new SplFileObject($csvname, "r");
-
-$file->setFlags(\SplFileObject::READ_CSV| \SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
-
-$ebuilder = new EmailKeyedMemberDataBuilder();
-
-$cnt = 0;
-
-foreach ($file as $no => $arr) 
-
-     $ebuilder($arr);  
-
-/*
-Echo "Printing the sorted emails:\n";
-
-print_r($ebuilder->get_sorted_emails());
-
-echo "----------------------------\n";
-
-echo "Printing the member list array whose key is the member's email.\n";
-*/
-
-$member_array = $ebuilder->get_member_array();
-
-$member_zipcodes = array();
-
-$members = $non_members = 0;
-
-$comparator = function(string $left, string $right) { return strcmp($left, $right); };
-
 function is_allen_count($zip) : bool
 {
 // sorted static array of Allen county zip codes.
@@ -57,25 +22,45 @@ static $allenzips= array(46704,46706,46723,46733,46741,46743,46745,46748,46765,4
 }
 
 
-foreach ($file as $line) {
+$csvfile = new SplFileObject("member-list.csv", "r");
 
-   $email = $line[??email_index];
+$csvfile->setFlags(\SplFileObject::READ_CSV| \SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
+
+$ebuilder = new EmailKeyedMemberDataBuilder();
+
+foreach ($csvfile as $no => $arr) $ebuilder($arr);  
+
+$member_array = $ebuilder->get_member_array();
+
+$member_zipcodes = array();
+
+$members = $non_members = 0;
+
+$comparator = function(string $left, string $right) { return strcmp($left, $right); };
+
+$csvfile = new SplFileObject($zoom_csv, "r");
+
+$csvfile->setFlags(\SplFileObject::READ_CSV| \SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
+
+foreach ($file as $zoom_arr) { // Read zoom file.
+
+   $email = $zoom_arr[$email_index];
 
    // Are they a ACGSI member?    
    $index = binary_search($ebuilder->get_sorted_emails(), $email, $comparator);
 
-   if ($index == -1) { // not an ACGSI member 
+   if ($index == -1) { // Viewer was not an ACGSI member 
 
        ++$non_member;
 
-   } else {
+   } else { // Store ACGSI memeber's zip code in $member_zipcodes
 
       $member_zipcodes[] = $member_array[$email]['zipcode'];
      
+      // note those in allen county 
       if (is_allen_county($member_array[$email]['zipcode'])
  
           $allen_county[] = $member_array[$email]['zipcode']; 
    }
-
 }
 
