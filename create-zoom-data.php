@@ -21,7 +21,6 @@ static $allenzips= array(46704,46706,46723,46733,46741,46743,46745,46748,46765,4
    return ($index === -1) ? false : true;
 }
 
-
 $csvfile = new SplFileObject("member-list.csv", "r");
 
 $csvfile->setFlags(\SplFileObject::READ_CSV| \SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
