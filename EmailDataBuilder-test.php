@@ -2,8 +2,10 @@
 declare(strict_types=1);
 use SocietyTools\{EmailDataBuilder};
 
+include "vendor/autoload.php";
+
 if ($argc != 2)
-   die("Enter the CSV that has the list of members.\n";
+   die("Enter the CSV that has the list of members.\n");
 
 $csvname = $argv[1]; // "csv-member-list.csv";
 
@@ -13,8 +15,13 @@ $file->setFlags(\SplFileObject::READ_CSV| \SplFileObject::READ_AHEAD | \SplFileO
 
 $ebuilder = new EmailDataBuilder();
 
-foreach ($file as $arr)
+$cnt = 0;
+
+foreach ($file as $no => $arr) {
+   
+     echo "Line no: $no.\n";
      $ebuilder($arr);  
+}
 
 print_r($ebuilder->get_sorted_emails());
 
