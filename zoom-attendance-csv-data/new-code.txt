@@ -1,0 +1,1 @@
+awk '/^Yes/ {print $1}'   oct.csv

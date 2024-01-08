@@ -1,0 +1,22 @@
+= Mulit-Line Spline Chart in ApexCharts
+
+== Multi-Line Charts
+
+
+=== Spline Multi-Line
+
+
+spline charts need the curve setting of `smooth`. You can increase the line thickness with `width`:
+
+```js
+stroke: {
+  curve: 'smooth',
+  width: 2
+}
+```
+
+To add markers, set `size` to any value greater than 0:
+
+markers: {
+    size: 1,
+}
