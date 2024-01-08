@@ -3,7 +3,7 @@
 declare(strict_types=1);
 namespace SocietyTools;
 
-class BSearch { // Enables binary search from Linux command line.
+class BinarySearch { // Enables binary search from Linux command line.
 
   private function binary_search(array $a, string $key, callable $comparator)
   {

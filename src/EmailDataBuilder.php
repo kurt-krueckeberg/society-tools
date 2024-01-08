@@ -51,7 +51,7 @@ $ asserts position at the end of a line
    {
        $zipcode = $this->extract_zip( $arr[2] );
 
-       $a = array('zip' => $zipcode, 'locality' => $arr[2], 'name' => $arr[0], 'address' => $arr[1]);
+       $a = array('zipcode' => $zipcode, 'locality' => $arr[2], 'name' => $arr[0], 'address' => $arr[1]);
 
        $this->members[$arr[3]] = $a; 
    }
