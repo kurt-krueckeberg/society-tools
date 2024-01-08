@@ -27,8 +27,8 @@ $ asserts position at the end of a line
    //private static$zipcode_regex = '/(\d{5})(?:-|(?:-\d{4}))?\s*$/';
    private static$regex = '/([^,]+),\s*([A-Z]{2,})\s+(\d{5})(?:-|(?:-\d{4}))?\s*$/';
 
-   // Member data. Array key is their email.
-   private $members = array();
+      // Maps member's email to an array whose keys are: 'zip', 'city' and 'state'
+      private $members = array();
 
    public function __construct()
    {
@@ -54,9 +54,9 @@ $ asserts position at the end of a line
 
    public function __invoke(array $arr)
    {
-       $zipcode = $this->extract_zip( $arr[2] );
+       $results = $this->extract_zip( $arr[2] );
 
-       $a = array('zipcode' => $zipcode, 'locality' => $arr[2], 'name' => $arr[0], 'address' => $arr[1]);
+       $a = array('zip' => $results['zip'], 'city' => $results['city'], 'state' => $results['state']);
 
        $this->members[$arr[3]] = $a; 
    }
