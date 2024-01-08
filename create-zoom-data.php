@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-use SocietyTools\{EmailKeyedMemberDataBuilder,BinarySearch};
+use SocietyTools\{EmailKeyedMemberDataBuilder,BinarySearch,CreateMemberCSVFile};
 
 include "vendor/autoload.php";
 include "src/binary_search.php";
@@ -21,7 +21,33 @@ static $allenzips= array(46704,46706,46723,46733,46741,46743,46745,46748,46765,4
    return ($index === -1) ? false : true;
 }
 
-$csvfile = new SplFileObject("member-list.csv", "r");
+function create_member_csv(string $memberfileName, string $outputcsvName)
+{
+  $builder = new CreateMemberCSVFile($outputcsvName);
+
+  //$input = "list-of-members.txt";
+
+  $in = new SplFileObject($memberfileName, "r");
+
+  $in->setFlags(\SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
+
+  foreach($in as $line) {
+
+       echo "Input: $line\n.";
+
+       $builder($line);
+  }
+
+  echo $outputcsvName . " created.\n"; 
+}
+
+$memberListFile = "list-of-members.txt";
+
+$csvName = "member-list.csv";
+
+create_member_csv($memberListFile, $csvName);
+
+$csvfile = new SplFileObject($csvName, "r");
 
 $csvfile->setFlags(\SplFileObject::READ_CSV| \SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
 
