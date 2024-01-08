@@ -1,5 +1,5 @@
 <?php
-decclare(strict_types=1);
+declare(strict_types=1);
 
 function binary_search(array $a, string $key, callable $comparator)
 {
