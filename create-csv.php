@@ -4,7 +4,8 @@ use SocietyTools\{MemberListBuilder};
 
 include "vendor/autoload.php";
 
-$csvname = "csv-member-list.csv";
+if ($argc != 2)
+   die("Enter the member list that is the expected format.\n");
 
 $builder = new MemberListBuilder($csvname);
 

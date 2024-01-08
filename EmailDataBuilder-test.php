@@ -5,7 +5,7 @@ use SocietyTools\{EmailDataBuilder};
 include "vendor/autoload.php";
 
 if ($argc != 2)
-   die("Enter the CSV that has the list of members.\n");
+   die("Enter the .csv file build using MemberListBuilder.\n");
 
 $csvname = $argv[1]; // "csv-member-list.csv";
 
@@ -18,7 +18,7 @@ $ebuilder = new EmailDataBuilder();
 $cnt = 0;
 
 foreach ($file as $no => $arr) {
-   
+
      echo "Line no: $no.\n";
      $ebuilder($arr);  
 }
