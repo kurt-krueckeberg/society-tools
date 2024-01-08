@@ -22,4 +22,4 @@ foreach($in as $line) {
        $builder($line);
 }
 
-echo "list-of-members.txt created.\n";
+echo "meber-list.csv created.\n";
