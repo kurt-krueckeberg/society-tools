@@ -4,6 +4,7 @@ use SocietyTools\{EmailKeyedMemberDataBuilder,BinarySearch,CreateMemberCSVFile};
 
 include "vendor/autoload.php";
 include "src/binary_search.php";
+include "src/config.php";
 
 function is_allen_county(int $zip) : bool
 {
@@ -41,24 +42,31 @@ function create_member_csv(string $memberfileName, string $outputcsvName)
   echo $outputcsvName . " created.\n"; 
 }
 
-$memberListFile = "list-of-members.txt";
+function build_arrays(string $csvFile)
+{
+  $csvfile = new SplFileObject($csvFile, "r");
 
-$csvName = "member-list.csv";
+  $csvfile->setFlags(\SplFileObject::READ_CSV| \SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
 
-create_member_csv($memberListFile, $csvName);
+  $builder = new EmailKeyedMemberDataBuilder();
 
-$csvfile = new SplFileObject($csvName, "r");
+  foreach ($csvfile as $no => $arr)
+     $builder($arr);  
 
-$csvfile->setFlags(\SplFileObject::READ_CSV| \SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
+  return $builder;
+}
 
-$ebuilder = new EmailKeyedMemberDataBuilder();
 
-foreach ($csvfile as $no => $arr) $ebuilder($arr);  
+if (file_exists($config['member-list']) === false)
+  create_member_csv($config['member-csv'], $csvName);
 
-$member_array = $ebuilder->get_member_array();
+$built_arrays = build_arrays($config['member-csv']);
 
-$sored_member_emails = $ebuilder->get_sorted_emails();
+$member_array = $built_arrays->get_member_array();
 
+$sored_member_emails = $built_arrays->get_sorted_emails();
+
+// Next section of code.
 $member_zipcodes = array();
 
 $members = $non_members = 0;
