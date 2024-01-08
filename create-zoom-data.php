@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-use SocietyTools\{EmailDataBuilder,BSearch};
+use SocietyTools\{EmailDataBuilder,BinarySearch};
 
 include "vendor/autoload.php";
 
@@ -29,7 +29,7 @@ echo "----------------------------\n";
 
 echo "Printing the member list array whose key is the member's email.\n";
 
-$bsearch = new BSearch($ebuilder->get_sored_emails());
+$bsearch = new BinarySearch($ebuilder->get_sored_emails());
 
 $member_array = $ebuilder->get_member_list();
 
@@ -47,7 +47,7 @@ foreach ($file as $line) {
    $email = $line[??email_index];
 
    // Are they a ACGSI member?    
-   $index = BSearch($email);
+   $index = BinarySearch($email);
 
    if ($index == -1) { // not an ACGSI member 
 
