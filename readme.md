@@ -9,9 +9,9 @@ Build the class autoloader from the command line:
 
 `composer dump-autoload`
 
-Include `vendor/autoload.php` as in these PHP files:
+Include `vendor/autoload.php` as in those described below.
 
-## Example Code Description
+## Example Code Descriptions
 
 * create-csv.php - creates a .CSV of member data that has four comma separated fields:
   * name
