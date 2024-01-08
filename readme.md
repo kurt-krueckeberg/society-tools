@@ -14,7 +14,7 @@ Include `vendor/autoload.php` as in those described below.
 ## Example Code Descriptions
 
 * create-csv.php - The input is `list-of-members.txt`, a protected file created from the PDF file of members available on the ACGSI website.
-It creates a .CSV of member data that has four comma separated fields:
+It outputs a .CSV of member data that consists of four comma separated fields:
   
   * name
   * address
