@@ -18,7 +18,7 @@ static $allenzips= array(46704,46706,46723,46733,46741,46743,46745,46748,46765,4
        else 1;
         });
 
-   return ($index === -1) ? false : true       
+   return ($index === -1) ? false : true;
 }
 
 

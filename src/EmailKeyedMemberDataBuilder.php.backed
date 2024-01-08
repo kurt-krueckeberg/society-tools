@@ -25,7 +25,7 @@ $ asserts position at the end of a line
 -----------------------
 */
    //private static$zipcode_regex = '/(\d{5})(?:-|(?:-\d{4}))?\s*$/';
-   private static$regex = '/([^,]+),\s*([A-Z]{2,})\s+(\d{5})(?:-|(?:-\d{4}))?\s*$/';
+   private static$zipcode_regex = '/([^,]+),\s*([A-Z]{2})\s+(\d{5})(?:-|(?:-\d{4}))?\s*$/';
 
    // Member data. Array key is their email.
    private $members = array();
@@ -34,22 +34,18 @@ $ asserts position at the end of a line
    {
    }
 
-   private function extract_zip(string $locality) : array
+   private function extract_zip(string $locality) : string
    {
-      $results = array();
-
       $matches = array();
       
-      $rc = preg_match(self::$regex, $locality, $matches);
+      $rc = preg_match(self::$zipcode_regex, $locality, $matches);
 
       if ($rc === false)
         throw new \LogicException("The regular expression failed. Check this locality for a missing zipcode: $locality.\n");
       
-      $results['city']  = isset($matches[1]) ? $matches[1] : 'city unknown';
-      $results['state'] = isset($matches[2]) ? $matches[2] : 'state unknown';
-      $results['zip']   = isset($matches[3]) ? $matches[3] : 'zip unknown';
-
-      return $results;
+      $zipcode = ($rc === 1) ? $matches[1] : '00000'; // No zipcode implies perhaps non-US address? We use '00000'.
+          
+      return $zipcode;
    }
 
    public function __invoke(array $arr)
