@@ -65,7 +65,7 @@ $ asserts position at the end of a line
       return $emails;
    }  
 
-   public function get_member_list() : array
+   public function get_member_array() : array
    {
       return $this->members;
    }  

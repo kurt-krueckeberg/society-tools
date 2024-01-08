@@ -22,6 +22,7 @@ foreach ($file as $no => $arr)
 
      $ebuilder($arr);  
 
+/*
 Echo "Printing the sorted emails:\n";
 
 print_r($ebuilder->get_sorted_emails());
@@ -29,10 +30,9 @@ print_r($ebuilder->get_sorted_emails());
 echo "----------------------------\n";
 
 echo "Printing the member list array whose key is the member's email.\n";
+*/
 
-$bsearch = new BinarySearch($ebuilder->get_sored_emails());
-
-$member_array = $ebuilder->get_member_list();
+$member_array = $ebuilder->get_member_array();
 
 $member_zipcodes = array();
 
@@ -42,6 +42,7 @@ $comparator = function(string $left, string $right) { return strcmp($left, $righ
 
 function is_allen_count($zip) : bool
 {
+// sorted static array of Allen county zip codes.
 static $allenzips= array(46704,46706,46723,46733,46741,46743,46745,46748,46765,46773,46774,46777,46783,46788,46797,46798,46802,46803,46804,46805,46806,46807,46808,46809,46814,46815,46816,46818,46819,46825,46835,46845);
  
    $index = binary_search($allenzips, $zip, function(int $left, int $right) {

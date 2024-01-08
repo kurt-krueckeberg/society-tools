@@ -29,6 +29,5 @@ echo "----------------------------\n";
 
 echo "Printing the member list array whose key is the member's email.\n";
 
-print_r($ebuilder->get_member_list());
+print_r($ebuilder->get_member_array());
 
-//$ebuilder->get_member_list();
