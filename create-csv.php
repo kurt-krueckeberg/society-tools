@@ -11,7 +11,7 @@ $builder = new CreateMemberCSVFile($argv[1]);
 
 //$input = "list-of-members.txt";
 
-$in = new SplFileObject($argv[1], "r");
+$in = new SplFileObject("list-of-members.txt", "r");
 
 $in->setFlags(\SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
 
@@ -22,4 +22,4 @@ foreach($in as $line) {
        $builder($line);
 }
 
-echo "meber-list.csv created.\n";
+echo $argv[1] . " created.\n"; 
