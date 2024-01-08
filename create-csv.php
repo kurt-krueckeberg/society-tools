@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
-use SocietyTools\{MemberListBuilder};
+use SocietyTools\{CreateMemberCSVFile};
 
 include "vendor/autoload.php";
 
 if ($argc != 2)
    die("Enter the member list that is the expected format.\n");
 
-$builder = new MemberListBuilder("member-list.csv");
+$builder = new CreatMemberCSVFile($argv[2]);
 
 //$input = "list-of-members.txt";
 

@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace SocietyTools;
 
-class MemberListBuilder {
+class CreateMemberCSVFile {
 
    private \SplFileObject $out;
 
