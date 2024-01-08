@@ -6,7 +6,7 @@ include "vendor/autoload.php";
 include "src/binary_search.php";
 
 if ($argc != 2)
-   die("Enter the .csv file build using MemberListBuilder.\n");
+   die("Enter the .csv file built using MemberListBuilder.\n");
 
 $csvname = $argv[1]; // "csv-member-list.csv";
 
