@@ -21,8 +21,9 @@ It outputs a .CSV of member data that consists of four comma separated fields:
   * city state and zip
   * member's email
 
-* build-email-arrays.php - demonstrates the use the EmailKeyedMemberData class. It takes the .CSV file created above and creates a map whose
+* build-email-arrays.php - demonstrates the use the `EmailKeyedMemberData` class. It takes the .CSV file created above and creates a map whose
 key is the email and whose value is an array consisting of:
+
   * zipcode
   * locality (city, state and zip)
   * name 
