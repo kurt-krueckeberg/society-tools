@@ -1,0 +1,20 @@
+{
+    "name": "kurt-krueckeberg/society-tools",
+    "description": "PHP client classes for member analysis of Zoom programs.",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "SocietyTools\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.2" 
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kurt Krueckeberg",
+            "email": "kurt.krueckeberg@gmail.com"
+        }
+    ]
+}

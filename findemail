@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
+use SocietyTools{SortedEmails, BSearch};
+
+include "vendor/autoload.php";
+
+$data = new MembershipData();
+
+$bs = new BSearch($data::get_emails());
+
+$rc = $bs($argv[1]);
+
+if ($rc !== -1)
+   echo "Error running BSearch::binary_search(), which should never happen.\n";
+
