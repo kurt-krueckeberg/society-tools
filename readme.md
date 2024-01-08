@@ -1,5 +1,11 @@
 # Society Tools
 
+Tools for getting statistics on Zoom attendance. Things like: 
+
+* member vs non-member
+* If inn Allen county, are member or non member
+* zipcode of all member attendees.
+
 ## Setup
 
   * clone the repository using git
