@@ -36,7 +36,6 @@ $ asserts position at the end of a line
 
    public function __construct()
    {
-      $this->si_sorted = false;
    }
 
    private function extract_zip(string $locality) : array

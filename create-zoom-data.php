@@ -32,6 +32,8 @@ foreach ($csvfile as $no => $arr) $ebuilder($arr);
 
 $member_array = $ebuilder->get_member_array();
 
+$sored_member_emails = $ebuiler->get_sorted_emails();
+
 $member_zipcodes = array();
 
 $members = $non_members = 0;
@@ -41,6 +43,8 @@ $comparator = function(string $left, string $right) { return strcmp($left, $righ
 $csvfile = new SplFileObject($zoom_csv, "r");
 
 $csvfile->setFlags(\SplFileObject::READ_CSV| \SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
+
+$allen_county_cnt = 0;
 
 foreach ($file as $zoom_arr) { // Read zoom file.
 
@@ -55,12 +59,12 @@ foreach ($file as $zoom_arr) { // Read zoom file.
 
    } else { // Store ACGSI memeber's zip code in $member_zipcodes
 
-      $member_zipcodes[] = $member_array[$email]['zipcode'];
+      $member_zipcodes[] = $member_array[$email]['zip'];
      
       // note those in allen county 
-      if (is_allen_county($member_array[$email]['zipcode'])
+      if (is_allen_county($member_array[$email]['zip']))
  
-          $allen_county[] = $member_array[$email]['zipcode']; 
+          ++$allen_county_cnt;
    }
 }
 
