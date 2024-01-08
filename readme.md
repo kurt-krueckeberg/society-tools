@@ -16,5 +16,8 @@ Build the class autoloader:
   * member's email
 
 * build-email-arrays.php - takes the .CSV file and use the email as the key that maps to an array consisting of the member's:
-  * 'zip' 'locality' => $arr[2], 'name' => $arr[0], 'address' => $arr[1]);
+  * zipcode
+  * locality (city, state and zip)
+  * name 
+  * address
   
