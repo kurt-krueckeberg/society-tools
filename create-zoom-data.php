@@ -5,7 +5,7 @@ use SocietyTools\{EmailKeyedMemberDataBuilder,BinarySearch};
 include "vendor/autoload.php";
 include "src/binary_search.php";
 
-function is_allen_count($zip) : bool
+function is_allen_county($zip) : bool
 {
 // sorted static array of Allen county zip codes.
 static $allenzips= array(46704,46706,46723,46733,46741,46743,46745,46748,46765,46773,46774,46777,46783,46788,46797,46798,46802,46803,46804,46805,46806,46807,46808,46809,46814,46815,46816,46818,46819,46825,46835,46845);
@@ -40,11 +40,13 @@ $members = $non_members = 0;
 
 $comparator = function(string $left, string $right) { return strcmp($left, $right); };
 
-$zoomcsv = new SplFileObject("./zoom-csv/sept.csv", "r");
+$zoomcsv = new SplFileObject("./zoom-csv/sept-data.csv", "r");
 
 $zoomcsv->setFlags(\SplFileObject::READ_CSV| \SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
 
 $allen_county_cnt = 0;
+
+$email_index = 2;
 
 foreach ($zoomcsv as $zoom_arr) { // Read zoom file.
 
