@@ -29,4 +29,5 @@ key is the email and whose value is an array consisting of:
   * name 
   * address
  
-* create-zoom-data.php - Builds the array of data for the Apexcharts like acgsi.html in the subdir apex-charts/. Not yet complete 
+* create-zoom-data.php - Builds the array of input data for the free, open-source Apexcharts javascript libary, which is used in [acgsi.html](apex-charts/acgsi.html)
+in the subdir [apex-charts/](apex-charts/). The code is not yet complete.
