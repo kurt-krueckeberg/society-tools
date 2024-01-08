@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-function binary_search(array $a, string $key, callable $comparator)
+function binary_search(array $a, mixed $key, callable $comparator)
 {
    $lo = 0;  
    $hi = count($a) - 1; 
