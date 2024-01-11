@@ -38,7 +38,7 @@ $ asserts position at the end of a line
    {
    }
 
-   private function extract_zip(string $locality) : array
+   private function extract_zipcode(string $locality) : array
    {
       $results = array();
 
@@ -58,7 +58,7 @@ $ asserts position at the end of a line
 
    public function __invoke(array $arr)
    {
-       $results = $this->extract_zip( $arr[2] );
+       $results = $this->extract_zipcode( $arr[2] );
 
        $a = array('zip' => $results['zip'], 'city' => $results['city'], 'state' => $results['state']);
 
