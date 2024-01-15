@@ -3,7 +3,8 @@ declare(strict_types=1);
 use SocietyTools\{EmailKeyedMemberDataBuilder,BinarySearch,CreateMemberCSVFile};
 
 include "vendor/autoload.php";
-include "src/binary_search.php";
+
+//include "src/binary_search.php";
 include "config.php";
 
 function is_allen_county(int $zip) : bool
@@ -83,6 +84,15 @@ $email_index = 2;
 
 $non_member_cnt = 0;
 
+$is_allen_county = new AllenZipSearch(function (int $left, int $right) { // closure returns: -1. 0 or 1.
+       if ($left == $right)
+           return 0;      
+       else if ($left < $right)
+           return -1;
+       else 1;
+        });
+
+
 foreach ($zoomcsv as $zoom_arr) { // Read zoom file.
 
    $email = $zoom_arr[$email_index];
@@ -99,7 +109,7 @@ foreach ($zoomcsv as $zoom_arr) { // Read zoom file.
       $member_zipcodes[] = $member_array[$email]['zip'];
      
       // note those in allen county 
-      if (is_allen_county((int) $member_array[$email]['zip']))
+      if ($is_allen_county((int) $member_array[$email]['zip']))
  
           ++$allen_county_cnt;
    }

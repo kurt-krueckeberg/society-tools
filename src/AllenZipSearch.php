@@ -1,23 +1,23 @@
-#!/usr/bin/env php
 <?php
 declare(strict_types=1);
 namespace Vocab;
 
-class BinarySearch { 
+class AllenZipSearch { 
 
-   private array | \ArrayIterator $a;
-   private $comparator;
+   private static $allenzips= array(46704,46706,46723,46733,46741,46743,46745,46748,46765,46773,46774,46777,46783,46788,46797,46798,46802,46803,46804,46805,46806,46807,46808,46809,46814,46815,46816,46818,46819,46825,46835,46845);
+
+   private $functor;
 
    private function binary_search(mixed $key)
    {
      $lo = 0;  
-     $hi = count($this->a) - 1; 
+     $hi = count(self::$allenzips) - 1; 
   
       while ($lo <= $hi) {
   
           $mid = $lo + (int) (($hi - $lo) / 2);
 
-          $cmp = ($this->comparator)($this->a[$mid], $key);
+          $cmp = ($this->functor)(self::$allenzips[$mid], $key);
   
           if ($cmp < 0)             
 
@@ -34,11 +34,9 @@ class BinarySearch {
       return -1;
    }
 
-   public function __construct(array | \ArrayAccess $arr, callable $cmp)
+   public function __construct(callable $cmp)
    {
-      $this->a = $arr;
-
-      $this->comparator = $cmp;
+      $this->functor = $cmp;
    }
 
    public function __invoke(string $key) : int

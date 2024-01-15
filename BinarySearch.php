@@ -3,7 +3,7 @@
 declare(strict_types=1);
 namespace Vocab;
 
-class BinarySearch { 
+class BinarySearch { // Enables binary search from Linux command line.
 
    private array | \ArrayIterator $a;
    private $comparator;
